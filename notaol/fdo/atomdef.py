@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import enum
 
 
@@ -270,6 +271,8 @@ class Atom(tuple, enum.Enum):
     async_install_sound = (13, 56)
     async_voice_recognition = (13, 57)
     async_get_os = (13, 58)
+    async_something_or_another = (13, 90)   # added as a temp filler for cm_inquire_all; it returns a list of tools in a large atom stream, but also has this
+                                            # 13,90 atom in there that I have no idea about.  March 15, 2021 MK
 
     blank_test = (52, 0)
     blank_get_form = (52, 1)
@@ -480,6 +483,7 @@ class Atom(tuple, enum.Enum):
 
     cm_mark_tool_invalid = (10, 0)
     cm_set_byte_count = (10, 1)
+    cm_start_tool_downloaded = (10, 4)
     cm_force_off = (10, 5)
     cm_inquire_add_tool = (10, 6)
     cm_inquire = (10, 7)
@@ -497,6 +501,7 @@ class Atom(tuple, enum.Enum):
     cm_use_proto = (10, 24)
     cm_start_block = (10, 25)
     cm_end_block = (10, 26)
+    cm_dump = (10, 27)
     cm_set_cancel_record = (10, 28)
     cm_set_to_restart = (10, 29)
     cm_cancel_held_streams = (10, 30)
@@ -1031,10 +1036,12 @@ class Atom(tuple, enum.Enum):
     lm_attr_list_entry_id = (9, 10)
     lm_get_list_entry_title = (9, 11)
     lm_get_list_entry_id = (9, 12)
+    # 13
     lm_retrieve_item = (9, 14)
     lm_render_item = (9, 15)
     lm_table_clear = (9, 16)
     lm_table_use_table = (9, 17)
+    # 18
     lm_table_use_key = (9, 19)
     lm_table_get_item = (9, 20)
     lm_table_set_item = (9, 21)
@@ -1053,6 +1060,7 @@ class Atom(tuple, enum.Enum):
     lm_add_entry_text = (9, 34)
     lm_add_entry_tab = (9, 35)
     lm_add_entry_date_time = (9, 36)
+    # 37
     lm_table_get_item_value = (9, 38)
     lm_table_set_item_value = (9, 39)
     lm_table_encrypt_table = (9, 40)

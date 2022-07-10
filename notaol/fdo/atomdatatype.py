@@ -1,9 +1,10 @@
-from notaol.fdo.datatype import DataType
+# -*- coding: utf-8 -*-
+from fdo.datatype import DataType
 
 
 class AtomDataType:
-    act_set_criterion = DataType.crit
-    act_do_action = DataType.crit
+    act_set_criterion = DataType.word
+    act_do_action = DataType.word
     act_set_inheritance = DataType.raw
     act_replace_action = DataType.stream
     act_replace_select_action = DataType.stream
@@ -29,10 +30,10 @@ class AtomDataType:
     act_get_db_record = DataType.gid
     act_set_db_id = DataType.gid
     act_set_db_record = DataType.gid
-    act_set_guest_flag = DataType.raw
-    act_set_newuser_flag = DataType.raw
+    act_set_guest_flag = DataType.bool
+    act_set_newuser_flag = DataType.bool
     act_set_db_offset = DataType.dword
-    act_get_db_value = DataType.raw
+    act_get_db_value = DataType.dword
     act_format_quote = DataType.str
     act_replace_popup_menu_action = DataType.stream
     activex_manage = DataType.raw
@@ -130,6 +131,7 @@ class AtomDataType:
     async_install_sound = DataType.dword
     async_voice_recognition = DataType.dword
     async_get_os = DataType.dword
+    async_something_or_another = DataType.str
     blank_test = DataType.raw
     blank_get_form = DataType.gid
     blank_get_ver = DataType.raw
@@ -333,11 +335,13 @@ class AtomDataType:
     chat_end_message = DataType.str
     cm_mark_tool_invalid = DataType.dword
     cm_set_byte_count = DataType.dword
+    cm_start_tool_downloaded = DataType.raw
     cm_force_off = DataType.str
     cm_inquire_add_tool = DataType.dword
-    cm_inquire = DataType.raw
+    cm_inquire = DataType.str
     cm_inquire_all = DataType.raw
     cm_clear_list = DataType.raw
+    cm_dump = DataType.raw
     cm_load_tool = DataType.str
     cm_kill_tool = DataType.dword
     cm_bounce_tool = DataType.dword
@@ -524,7 +528,7 @@ class AtomDataType:
     exapi_list_attr_set_style = DataType.dword
     exapi_list_attr_set_title = DataType.str
     exapi_list_attr_set_gid = DataType.dword
-    exapi_list_item_start = DataType.raw
+    exapi_list_item_start = DataType.str
     exapi_list_item_set_sreg = DataType.dword
     exapi_list_item_set_str = DataType.str
     exapi_list_item_set_nreg = DataType.dword
@@ -691,7 +695,7 @@ class AtomDataType:
     hfs_attr_layer_name = DataType.str
     hfs_cmd_read_only_form = DataType.bool
     hfs_attr_server_name = DataType.str
-    hfs_cmd_access_rights = DataType.raw
+    hfs_cmd_access_rights = DataType.dword
     hfs_attr_end_object = DataType.raw
     hfs_attr_object_flags = DataType.dword
     hfs_cmd_command = DataType.dword
@@ -708,6 +712,7 @@ class AtomDataType:
     hfs_attr_start_raw_display = DataType.raw
     hfs_attr_end_raw_display = DataType.raw
     hfs_cmd_aspp_id = DataType.raw
+    hfs_fdo = DataType.stream # added Nov. 17, 2021 - Mike (missing)
     htmlview_manage = DataType.raw
     htmlview_notify_action = DataType.dword
     idb_atr_dod = DataType.raw
@@ -858,12 +863,12 @@ class AtomDataType:
     lm_user_delete_item = DataType.dword
     lm_start_list = DataType.raw
     lm_end_list = DataType.raw
-    lm_start_list_entry = DataType.raw
+    lm_start_list_entry = DataType.str
     lm_end_list_entry = DataType.raw
-    lm_attr_list_type = DataType.raw
-    lm_attr_list_form = DataType.raw
-    lm_display_list = DataType.raw
-    lm_attr_list_entry_id = DataType.raw
+    lm_attr_list_type = DataType.var
+    lm_attr_list_form = DataType.gid
+    lm_display_list = DataType.var
+    lm_attr_list_entry_id = DataType.dword
     lm_get_list_entry_title = DataType.raw
     lm_get_list_entry_id = DataType.raw
     lm_retrieve_item = DataType.raw
@@ -902,7 +907,7 @@ class AtomDataType:
     man_set_context_response_id = DataType.dword
     man_set_context_globalid = DataType.gid
     man_set_context_relative = DataType.dword
-    man_set_context_index = DataType.dword
+    man_set_context_index = DataType.word
     man_change_context_relative = DataType.dword
     man_clear_relative = DataType.dword
     man_clear_object = DataType.gid
@@ -1026,7 +1031,7 @@ class AtomDataType:
     mat_bool_hidden = DataType.bool
     mat_orientation = DataType.orient
     mat_capacity = DataType.dword
-    mat_font_sis = DataType.multi
+    mat_font_sis = DataType.bytelist
     mat_relative_tag = DataType.dword
     mat_object_id = DataType.gid
     mat_art_id = DataType.gid
@@ -1038,7 +1043,7 @@ class AtomDataType:
     mat_vertical_spacing = DataType.dword
     mat_iconify_as = DataType.raw
     mat_plus_group = DataType.raw
-    mat_size = DataType.multi
+    mat_size = DataType.bytelist
     mat_title = DataType.str
     mat_title_width = DataType.dword
     mat_bool_list_icons = DataType.bool
@@ -1099,7 +1104,7 @@ class AtomDataType:
     mat_color_top_edge = DataType.bytelist
     mat_color_bottom_edge = DataType.bytelist
     mat_bool_gradual_shadow = DataType.bool
-    mat_frame_style = DataType.word
+    mat_frame_style = DataType.bytelist
     mat_trigger_style = DataType.word
     mat_color_selected = DataType.bytelist
     mat_color_text_shadow = DataType.bytelist
@@ -1238,7 +1243,7 @@ class AtomDataType:
     mip_subject = DataType.raw
     mip_text = DataType.raw
     mip_data = DataType.raw
-    mip_message_id = DataType.raw
+    mip_message_id = DataType.dword
     mip_author = DataType.raw
     mip_message_date = DataType.raw
     mip_message_datestr = DataType.raw
@@ -1642,14 +1647,16 @@ class AtomDataType:
     uni_start_stream = DataType.raw
     uni_end_stream = DataType.raw
     uni_abort_stream = DataType.dword
-    uni_start_large_atom = DataType.ignore
-    uni_large_atom_segment = DataType.ignore
-    uni_end_large_atom = DataType.ignore
+    uni_start_large_atom = DataType.word
+    uni_large_atom_segment = DataType.str
+    uni_end_large_atom = DataType.str
     uni_sync_skip = DataType.dword
     uni_start_loop = DataType.raw
     uni_end_loop = DataType.raw
     uni_use_last_atom_string = DataType.multi
-    uni_use_last_atom_value = DataType.multi
+    #uni_use_last_atom_string = DataType.str    # original type
+    uni_use_last_atom_value = DataType.word     # original type
+    #uni_use_last_atom_value = DataType.multi
     uni_save_result = DataType.raw
     uni_data = DataType.raw
     uni_wait_on = DataType.raw
@@ -1704,7 +1711,7 @@ class AtomDataType:
     var_string_null = DataType.var
     var_string_save = DataType.vdword
     var_string_set_from_atom = DataType.var
-    var_string_get = DataType.var
+    var_string_get = DataType.vdword
     var_string_set_id_one_value = DataType.raw
     var_data_set = DataType.raw
     var_data_zero = DataType.var
